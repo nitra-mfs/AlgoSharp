@@ -17,7 +17,7 @@ def binarySearch(L,x,left,right):
     if right <= left:
         return right
     else:
-        med = left+(right-left)//2
+        # med = left+(right-left)//2
         med = (left+right)//2
         if x == L[med]:
             return med
