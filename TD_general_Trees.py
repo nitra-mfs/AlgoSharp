@@ -1,5 +1,21 @@
+from AlgoPy import queue
+from AlgoPy.queue import Queue
 
 
+def newQueue():
+    return queue.Queue()
+
+def isEmpty(q):
+    return q.empty()
+
+def enqueue(e, q):
+    return q.put(e)
+
+def dequeue(q):
+    if not isEmpty(q):
+        return q.get()
+    else:
+        raise Exception ("")
 
 def Size(T):
     if T == None:
@@ -68,3 +84,75 @@ def averageArity(T):
     if nbInt == 0:
         return 0
     return nbLink/nbInt
+
+def depth(T):
+    if T != None:
+        #prefix
+        if T.nbChildren != 0:
+            for i in range(T.nbChildren - 1):
+                depth(T.children[i])
+                #inter
+            depth(T.children[-1])
+            #suffix
+
+def depthTAB(T,p = None):
+    if T != None:
+        #prefix
+        print(T.key,'prefix')
+        depthTAB(T.child,T)
+        #suffix
+        print(T.key,'suffix')
+        if T.sibling != None && p != None:
+            #inter
+            print(P.key,'inter')
+            depthTAB(T.sibling,p)
+
+def depthTab(B):
+    if B == None:
+        return
+    #prefix
+    print(B.key,'prefix')
+    child = B.child
+    while(child != None):
+        depthTab(child)
+        child = child.sibling
+        if child != None:
+            #inter
+            print(B.key,'inter')
+    #suffix
+    print(B.key,'suffix')
+
+
+def breadth(T):
+    q = Queue()
+    queue.enqueue(T.q)
+    queue.enqueue(None,q)
+    while not isEmpty(q):
+        B = dequeue(q)
+        if B == None:
+            if not queue isEmpty(q):
+                q = enqueue(None,q)
+            else:
+                print(B.key,end=' ')
+                for i in range(nbChildren):
+                    enqueue(T.children[i],q)
+
+def breathTAB(T):
+    if T == None:
+        return
+    Q = Queue()
+    queue.enqueue(B,Q)
+    queue.enqueue(None,Q)
+    while not queue isEmpty(Q):
+        B = queue.dequeue(Q)
+        if B == None:
+            print()
+            if not queue.isEmpty(Q):
+                queue.enqueue(None,Q)
+            else:
+                print(B.key,end='')
+                child = B.child
+                while child != None:
+                    queue.enqueue(child,Q)
+                    child = child.sibling
+
