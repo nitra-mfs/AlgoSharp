@@ -102,7 +102,7 @@ def depthTAB(T,p = None):
         depthTAB(T.child,T)
         #suffix
         print(T.key,'suffix')
-        if T.sibling != None && p != None:
+        if T.sibling != None and p != None:
             #inter
             print(P.key,'inter')
             depthTAB(T.sibling,p)
@@ -130,10 +130,10 @@ def breadth(T):
     while not isEmpty(q):
         B = dequeue(q)
         if B == None:
-            if not queue isEmpty(q):
+            if not queue.isEmpty(q):
                 q = enqueue(None,q)
             else:
-                print(B.key,end=' ')
+                print(B.key,end='')
                 for i in range(nbChildren):
                     enqueue(T.children[i],q)
 
@@ -155,4 +155,83 @@ def breathTAB(T):
                 while child != None:
                     queue.enqueue(child,Q)
                     child = child.sibling
+
+def build_vect(A,L):
+    L.append(A.key)
+    for i in range(A.nbChildren):
+        build_vect(A.children[i])
+    L.append(A.key)
+
+def build(A):
+    L = []
+    if A != None:
+        build_vect(A,L)
+    return L
+
+def same(T,B):
+    if T == None or B == None:
+        return False
+    elif T == None and B == None:
+        return True
+    elif T.key != B.key:
+        return False
+    else:
+        i = 0
+        test = True
+        C = B.child
+        while(i < T.nbChildren and C != None and test):
+            test = same(T.children[i],C)
+            C = C.sibling
+            i += 1
+        return test and i == T.nbCjildren and C == None
+
+def TABtoTree(T):
+    if T == None:
+        return None
+    else:
+        B = Tree(T.key)
+        child = T.child
+        while(child != None):
+            B.children.append(TABtoTree(child))
+            child = child.sibling
+        return B
+
+def TreeToTAB(T):
+    if T == None:
+        return None
+    B = TreeAsBin(T.key)
+    if (T.nbChildren != 0):
+        B.child = TreeToTAB(T.children[0])
+        child = B.child
+        for i in range(1,T.nbChildren[i]):
+            child.sibling = TreeToTAB(T.children[i])
+            child = child.sibling
+    return B
+
+def Tree2List(B):
+    if B == NOne:
+        return ''
+    s = '('
+    s += str(B.key)
+    for child in T.children:
+        s += tree2List(child)
+    s += ')'
+    return s
+
+def TAB2List(B):
+    if B == None:
+        return ''
+    s ='(' + str(B.key)
+    child = T.child
+    while(child != None):
+        s += TAB2List(child)
+        child = child.sibling
+    s += ')'
+    return s
+
+def TAB2List(B):
+    if T == None:
+        return ''
+    return '(' + str(T.key) + TAB2List(B.child) + ')' + TABtoList(T.sibling)
+
 
