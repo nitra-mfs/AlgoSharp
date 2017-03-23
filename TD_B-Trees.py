@@ -58,9 +58,45 @@ def rangeBTree(B,inf,sup):
     return L
 
 def minBTree(B):
-    for i in range(B.Keys):
-        if B.children != []:
-            minBTree(B.children[i])
+    if B.children == []:
+        return B.keys[0]
+    else:
+        return minBTree(B.children[0])
+
+def maxIter(B):
+    while(B.children != []):
+        B = B.children[-1]
+    return B.keys[-1]
+
+def _binarySearchPos(L,x,left,right):
+    if right <= left:
+        return right
+    else:
+        med = left +  (right - left)//2
+        if x == L[med]
+            return med
+        elif x < L[med]:
+            return binarySearch(L,x,left,med)
+        else:
+            return binarySearch(L,x,med+1,right)
+
+def binarySearchPos(L,x):
+    return _binarySearchPos(L,x,0,len(L))
+
+def search(B,x):
+    if  B == None:
+        return None
+    else:
+        tmp = binarySearchPos(B.keys,x)
+        if tmp < B.nbKeys and B.keys[i] == x:
+                return (B, tmp)
+        else:
+            if B.children != []:
+                return search(B.children[i],x)
+            else:
+                return None
+
+
 
 
 
