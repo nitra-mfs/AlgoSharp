@@ -3,7 +3,7 @@
 
 class Tree:
 
-    def _init_{self, key = None, children = None}:
+    def _init_(self, key = None, children = None):
         self.key = key
         if children is not None:
             self.children = children
@@ -21,7 +21,7 @@ class TreeAsBin:
         self.key = key
         self.child = child
         self.sibling = sibling
-
+'''
 def tutoEx1():
     C1 = Tree(3,[Tree(-6),Tree(10)])
     C2 = Tree(8,[Tree(11,[Tree(0),Tree(4)]),Tree(2),Tree(5)])
@@ -39,3 +39,5 @@ def tutoEx1():
     return TreeAsBin(15,C1,None)
 
 TAB = tutoEx1()
+
+'''

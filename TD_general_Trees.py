@@ -1,5 +1,6 @@
-from AlgoPy import queue
-from AlgoPy.queue import Queue
+
+from tree import Tree
+from tree import TreeAsBin
 
 
 def newQueue():
@@ -16,6 +17,20 @@ def dequeue(q):
         return q.get()
     else:
         raise Exception ("")
+
+C1 = Tree(3,[Tree(-6),Tree(10)])
+C2 = Tree(8,[Tree(11,[Tree(0),Tree(4)],Tree(2),Tree(5))])
+C3 = Tree(9)
+
+C = Tree(15,[C1,C2,C3])
+
+T1 = TreeAsBin(3,TreeAsBin(-6,None,TreeAsBin(10)))
+T2 = TreeAsBin(8,TreeAsBin(11,TreeAsBin(0,None,TreeAsBin(4)),TreeAsBin(2,None,TreeAsBin(5))))
+T3 = TreeAsBin(9)
+T1.sibling = T2
+T2.sibling = T3
+
+T = TreeAsBin(15,C1,None)
 
 def Size(T):
     if T == None:
@@ -107,6 +122,8 @@ def depthTAB(T,p = None):
             print(P.key,'inter')
             depthTAB(T.sibling,p)
 
+depth(C)
+
 def depthTab(B):
     if B == None:
         return
@@ -122,6 +139,8 @@ def depthTab(B):
     #suffix
     print(B.key,'suffix')
 
+depthTab(T)
+
 
 def breadth(T):
     q = Queue()
@@ -133,9 +152,10 @@ def breadth(T):
             if not queue.isEmpty(q):
                 q = enqueue(None,q)
             else:
-                print(B.key,end='')
+                
                 for i in range(nbChildren):
                     enqueue(T.children[i],q)
+
 
 def breathTAB(T):
     if T == None:
@@ -143,14 +163,14 @@ def breathTAB(T):
     Q = Queue()
     queue.enqueue(B,Q)
     queue.enqueue(None,Q)
-    while not queue isEmpty(Q):
+    while not queue.isEmpty(Q):
         B = queue.dequeue(Q)
         if B == None:
             print()
             if not queue.isEmpty(Q):
                 queue.enqueue(None,Q)
             else:
-                print(B.key,end='')
+                
                 child = B.child
                 while child != None:
                     queue.enqueue(child,Q)
@@ -183,7 +203,7 @@ def same(T,B):
             test = same(T.children[i],C)
             C = C.sibling
             i += 1
-        return test and i == T.nbCjildren and C == None
+        return test and i == T.nbChildren and C == None
 
 def TABtoTree(T):
     if T == None:
@@ -214,7 +234,7 @@ def Tree2List(B):
     s = '('
     s += str(B.key)
     for child in T.children:
-        s += tree2List(child)
+        s += Tree2List(child)
     s += ')'
     return s
 
