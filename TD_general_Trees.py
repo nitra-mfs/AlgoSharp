@@ -19,7 +19,7 @@ def dequeue(q):
         raise Exception ("")
 
 C1 = Tree(3,[Tree(-6),Tree(10)])
-C2 = Tree(8,[Tree(11,[Tree(0),Tree(4)],Tree(2),Tree(5))])
+C2 = Tree(8,[Tree(11,[Tree(0),Tree(4),Tree(2),Tree(5)])])
 C3 = Tree(9)
 
 C = Tree(15,[C1,C2,C3])
@@ -104,11 +104,11 @@ def depth(T):
     if T != None:
         #prefix
         if T.nbChildren != 0:
-            for i in range(T.nbChildren - 1):
+            for i in range(T.nbChildren):
                 depth(T.children[i])
-                #inter
-            depth(T.children[-1])
-            #suffix
+                print("inter")
+            #depth(T.children[-1])
+            print("suffix")
 
 def depthTAB(T,p = None):
     if T != None:
@@ -121,8 +121,6 @@ def depthTAB(T,p = None):
             depthTAB(T.sibling,p)
         #suffix
         print(T.key,'suffix')
-
-depth(C)
 
 def depthTab(B):
     if B == None:
@@ -138,8 +136,6 @@ def depthTab(B):
             print(B.key,'inter')
     #suffix
     print(B.key,'suffix')
-
-depthTab(T)
 
 
 def breadth(T):
