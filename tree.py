@@ -3,7 +3,7 @@
 
 class Tree:
 
-    def _init_(self, key = None, children = None):
+    def __init__(self, key = None, children = None):
         self.key = key
         if children is not None:
             self.children = children
@@ -11,13 +11,12 @@ class Tree:
             self.children = []
 
     @property
-
     def nbChildren(self):
         return len(self.children)
 
 class TreeAsBin:
 
-    def _init_(self,key,child = None,sibling = None):
+    def __init__(self,key,child = None,sibling = None):
         self.key = key
         self.child = child
         self.sibling = sibling
