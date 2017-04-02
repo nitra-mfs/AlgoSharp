@@ -85,7 +85,7 @@ def countLinkandNodes(T):
         nbInt,nbLink = 0,0
         if T.child != None:
             nbInt = 1
-            child = T.child
+        child = T.child
         while(child != None):
             nbLink += 1
             child = child.sibling
@@ -115,12 +115,12 @@ def depthTAB(T,p = None):
         #prefix
         print(T.key,'prefix')
         depthTAB(T.child,T)
-        #suffix
-        print(T.key,'suffix')
         if T.sibling != None and p != None:
             #inter
-            print(P.key,'inter')
+            print(p.key,'inter')
             depthTAB(T.sibling,p)
+        #suffix
+        print(T.key,'suffix')
 
 depth(C)
 
@@ -143,34 +143,31 @@ depthTab(T)
 
 
 def breadth(T):
-    q = Queue()
-    queue.enqueue(T.q)
+    q = queueQueue()
+    queue.enqueue(T,q)
     queue.enqueue(None,q)
-    while not isEmpty(q):
-        B = dequeue(q)
+    while not queue.isEmpty(q):
+        B = queue.dequeue(q)
         if B == None:
             if not queue.isEmpty(q):
-                q = enqueue(None,q)
+                q = queue.enqueue(None,q)
             else:
-                
                 for i in range(nbChildren):
-                    enqueue(T.children[i],q)
+                    queue.enqueue(T.children[i],q)
 
 
-def breathTAB(T):
+def breadthTAB(T):
     if T == None:
         return
-    Q = Queue()
+    Q = queue.Queue()
     queue.enqueue(B,Q)
     queue.enqueue(None,Q)
     while not queue.isEmpty(Q):
         B = queue.dequeue(Q)
         if B == None:
-            print()
             if not queue.isEmpty(Q):
                 queue.enqueue(None,Q)
             else:
-                
                 child = B.child
                 while child != None:
                     queue.enqueue(child,Q)
@@ -229,7 +226,7 @@ def TreeToTAB(T):
     return B
 
 def Tree2List(B):
-    if B == NOne:
+    if B == None:
         return ''
     s = '('
     s += str(B.key)
